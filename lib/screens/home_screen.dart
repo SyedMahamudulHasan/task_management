@@ -52,10 +52,13 @@ class _HomeScreenState extends State<HomeScreen> {
             SizedBox(
               height: size.height / 2.5,
             ),
-            Buttonwidget(
-                text: "Add Task",
-                textColor: AppColors.textHolder,
-                buttonColor: AppColors.mainColor),
+            MaterialButton(
+              onPressed: () {},
+              child: Buttonwidget(
+                  text: "Add Task",
+                  textColor: AppColors.textHolder,
+                  buttonColor: AppColors.mainColor),
+            ),
             Buttonwidget(
               text: "View All",
               textColor: AppColors.textHolder,
