@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:task_management/colors/app_colors.dart';
+import 'package:task_management/widgets/buttonWidgets.dart';
 import 'package:task_management/widgets/task_widget.dart';
 
 class AllTask extends StatelessWidget {
@@ -109,11 +110,35 @@ class AllTask extends StatelessWidget {
                 onDismissed: (direction) {},
                 confirmDismiss: (direction) async {
                   if (direction == DismissDirection.startToEnd) {
+                    ///===============================================>showModalBottonSheet
                     showModalBottomSheet(
+                        backgroundColor: Colors.transparent,
+                        barrierColor: Colors.transparent,
                         context: context,
                         builder: (_) {
                           return Container(
-                            child: Text('testing'),
+                            height: size.height / 2,
+                            decoration: BoxDecoration(
+                              color: AppColors.secondaryColor.withOpacity(0.5),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Buttonwidget(
+                                    text: "View",
+                                    textColor: Colors.white,
+                                    buttonColor: AppColors.mainColor,
+                                  ),
+                                  Buttonwidget(
+                                    text: "Edit",
+                                    textColor: AppColors.secondaryColor,
+                                    buttonColor: AppColors.mainColor,
+                                  )
+                                ],
+                              ),
+                            ),
                           );
                         });
                     return false;
