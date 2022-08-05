@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:task_management/colors/app_colors.dart';
 import 'package:task_management/widgets/buttonWidgets.dart';
 import 'package:task_management/widgets/task_widget.dart';
+import 'package:get/get.dart';
 
 class AllTask extends StatelessWidget {
   const AllTask({Key? key}) : super(key: key);
@@ -51,7 +52,9 @@ class AllTask extends StatelessWidget {
               ),
             ),
             child: IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Get.back();
+              },
               icon: const Icon(
                 Icons.arrow_back,
               ),

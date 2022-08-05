@@ -1,10 +1,9 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 
 import 'package:task_management/colors/app_colors.dart';
 import 'package:task_management/screens/addtaskFied.dart';
 import 'package:task_management/widgets/buttonWidgets.dart';
+import 'package:get/get.dart';
 
 class AddTask extends StatelessWidget {
   const AddTask({Key? key}) : super(key: key);
@@ -36,7 +35,9 @@ class AddTask extends StatelessWidget {
                     height: 30,
                   ),
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.back();
+                    },
                     icon: Icon(
                       Icons.arrow_back,
                       color: AppColors.mainColor,
