@@ -22,14 +22,15 @@ class TaskWidget extends StatelessWidget {
         color: AppColors.textHolder,
       ),
       child: Center(
-          child: Text(
-        task,
-        style: const TextStyle(
-          color: Colors.grey,
-          fontSize: 16,
-          fontWeight: FontWeight.bold,
+        child: Text(
+          task,
+          style: const TextStyle(
+            color: Colors.grey,
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+          ),
         ),
-      )),
+      ),
     );
   }
 }

@@ -112,35 +112,40 @@ class AllTask extends StatelessWidget {
                   if (direction == DismissDirection.startToEnd) {
                     ///===============================================>showModalBottonSheet
                     showModalBottomSheet(
-                        backgroundColor: Colors.transparent,
-                        barrierColor: Colors.transparent,
-                        context: context,
-                        builder: (_) {
-                          return Container(
-                            height: size.height / 2,
-                            decoration: BoxDecoration(
-                              color: AppColors.secondaryColor.withOpacity(0.5),
+                      backgroundColor: Colors.transparent,
+                      barrierColor: Colors.transparent,
+                      context: context,
+                      builder: (_) {
+                        return Container(
+                          height: size.height / 2,
+                          decoration: BoxDecoration(
+                            color: AppColors.secondaryColor.withOpacity(0.2),
+                            borderRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(20),
+                              topRight: Radius.circular(20),
                             ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Buttonwidget(
-                                    text: "View",
-                                    textColor: Colors.white,
-                                    buttonColor: AppColors.mainColor,
-                                  ),
-                                  Buttonwidget(
-                                    text: "Edit",
-                                    textColor: AppColors.secondaryColor,
-                                    buttonColor: AppColors.mainColor,
-                                  )
-                                ],
-                              ),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Buttonwidget(
+                                  text: "View",
+                                  textColor: Colors.white,
+                                  buttonColor: AppColors.mainColor,
+                                ),
+                                Buttonwidget(
+                                  text: "Edit",
+                                  textColor: AppColors.secondaryColor,
+                                  buttonColor: AppColors.mainColor,
+                                )
+                              ],
                             ),
-                          );
-                        });
+                          ),
+                        );
+                      },
+                    );
                     return false;
                   } else {
                     return true;
