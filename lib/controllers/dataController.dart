@@ -21,4 +21,18 @@ class DataController extends GetxController {
       print('We didnot get any data');
     }
   }
+
+    Future<void> postData(String task, String taskDetails) async {
+    _isLoading = true;
+    Response response = await _dataService.postData({
+      'task': task,
+      'taskDetail': taskDetails,
+    });
+    if (response.statusCode == 200) {
+      print('we post the data');
+      update();
+    } else {
+      print('We didnot get any data');
+    }
+  }
 }

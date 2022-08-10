@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:task_management/colors/app_colors.dart';
 import 'package:task_management/screens/addtaskFied.dart';
+import 'package:task_management/utils/add_task_error_warning.dart';
 import 'package:task_management/widgets/buttonWidgets.dart';
 import 'package:get/get.dart';
 
@@ -13,6 +14,19 @@ class AddTask extends StatelessWidget {
     TextEditingController _nameController = TextEditingController();
     TextEditingController _detailController = TextEditingController();
     final size = MediaQuery.of(context).size;
+
+    bool _dataValidation() {
+      if (_nameController.text.trim() == '') {
+        ErrorMsg.taskErrorWarning('Task Name', 'Task name is empty');
+        return false;
+      } else if (_detailController.text.trim() == "") {
+        ErrorMsg.taskErrorWarning('Task Details', 'Task Details is empty');
+        return false;
+      }
+
+      return true;
+    }
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
@@ -63,10 +77,15 @@ class AddTask extends StatelessWidget {
                   const SizedBox(
                     height: 20,
                   ),
-                  Buttonwidget(
-                    text: "Add",
-                    textColor: Colors.white,
-                    buttonColor: AppColors.mainColor,
+                  GestureDetector(
+                    onTap: (() {
+                      _dataValidation();
+                    }),
+                    child: Buttonwidget(
+                      text: "Add",
+                      textColor: Colors.white,
+                      buttonColor: AppColors.mainColor,
+                    ),
                   )
                 ],
               ),
