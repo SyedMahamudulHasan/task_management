@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:task_management/colors/app_colors.dart';
+import 'package:task_management/controllers/dataController.dart';
 import 'package:task_management/widgets/buttonWidgets.dart';
 import 'package:task_management/widgets/task_widget.dart';
 import 'package:get/get.dart';
@@ -7,14 +8,17 @@ import 'package:get/get.dart';
 class AllTask extends StatelessWidget {
   const AllTask({Key? key}) : super(key: key);
 
+  _loadData() async {
+    await Get.find<DataController>().getData();
+    print('loading is calling');
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final List mydata = [
-      "Try harder",
-      "Try smarter",
-      "Try harder",
-    ];
+    _loadData();
+
+    dynamic myData = Get.find<DataController>().myData;
 
     final leftEditIcon = Container(
       padding: const EdgeInsets.only(left: 20),
@@ -106,61 +110,95 @@ class AllTask extends StatelessWidget {
           Flexible(
             child: ListView.builder(
               shrinkWrap: true,
-              itemCount: mydata.length,
-              itemBuilder: (context, index) => Dismissible(
-                background: leftEditIcon,
-                secondaryBackground: rightEditIcon,
-                onDismissed: (direction) {},
-                confirmDismiss: (direction) async {
-                  if (direction == DismissDirection.startToEnd) {
-                    ///===============================================>showModalBottonSheet
-                    showModalBottomSheet(
-                      backgroundColor: Colors.transparent,
-                      barrierColor: Colors.transparent,
-                      context: context,
-                      builder: (_) {
-                        return Container(
-                          height: size.height / 2,
-                          decoration: BoxDecoration(
-                            color: AppColors.secondaryColor.withOpacity(0.2),
-                            borderRadius: const BorderRadius.only(
-                              topLeft: Radius.circular(20),
-                              topRight: Radius.circular(20),
-                            ),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Buttonwidget(
-                                  text: "View",
-                                  textColor: Colors.white,
-                                  buttonColor: AppColors.mainColor,
-                                ),
-                                Buttonwidget(
-                                  text: "Edit",
-                                  textColor: AppColors.secondaryColor,
-                                  buttonColor: AppColors.mainColor,
-                                )
-                              ],
-                            ),
-                          ),
-                        );
-                      },
-                    );
-                    return false;
-                  } else {
-                    return true;
-                  }
-                },
-                key: ObjectKey(index),
-                child: TaskWidget(size: size, task: mydata[index]),
-              ),
+              itemCount: myData.length,
+              itemBuilder: (context, index) => myData.length == 0
+                  ? const SizedBox(
+                      child: Center(
+                        child: Text("Task list is empty"),
+                      ),
+                    )
+                  : ListOfTasks(
+                      leftEditIcon: leftEditIcon,
+                      rightEditIcon: rightEditIcon,
+                      size: size,
+                      myData: myData[index],
+                      index: index,
+                    ),
             ),
           )
         ],
       ),
+    );
+  }
+}
+
+class ListOfTasks extends StatelessWidget {
+  const ListOfTasks({
+    Key? key,
+    required this.leftEditIcon,
+    required this.rightEditIcon,
+    required this.size,
+    required this.myData,
+    required this.index,
+  }) : super(key: key);
+
+  final Container leftEditIcon;
+  final Container rightEditIcon;
+  final Size size;
+  final List myData;
+  final int index;
+
+  @override
+  Widget build(BuildContext context) {
+    return Dismissible(
+      background: leftEditIcon,
+      secondaryBackground: rightEditIcon,
+      onDismissed: (direction) {},
+      confirmDismiss: (direction) async {
+        if (direction == DismissDirection.startToEnd) {
+          ///===============================================>showModalBottonSheet
+          showModalBottomSheet(
+            backgroundColor: Colors.transparent,
+            barrierColor: Colors.transparent,
+            context: context,
+            builder: (_) {
+              return Container(
+                height: size.height / 2,
+                decoration: BoxDecoration(
+                  color: AppColors.secondaryColor.withOpacity(0.2),
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(20),
+                    topRight: Radius.circular(20),
+                  ),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Buttonwidget(
+                        text: "View",
+                        textColor: Colors.white,
+                        buttonColor: AppColors.mainColor,
+                      ),
+                      Buttonwidget(
+                        text: "Edit",
+                        textColor: AppColors.secondaryColor,
+                        buttonColor: AppColors.mainColor,
+                      )
+                    ],
+                  ),
+                ),
+              );
+            },
+          );
+          return false;
+        } else {
+          return true;
+        }
+      },
+      key: ObjectKey(index),
+      child: TaskWidget(size: size, task: myData[index]),
     );
   }
 }

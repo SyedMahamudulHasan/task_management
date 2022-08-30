@@ -9,7 +9,7 @@ class TaskWidget extends StatelessWidget {
   }) : super(key: key);
 
   final Size size;
-  final String task;
+  final dynamic task;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class TaskWidget extends StatelessWidget {
       ),
       child: Center(
         child: Text(
-          task,
+          task["task_name"],
           style: const TextStyle(
             color: Colors.grey,
             fontSize: 16,

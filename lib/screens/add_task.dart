@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:task_management/colors/app_colors.dart';
+import 'package:task_management/controllers/dataController.dart';
 import 'package:task_management/screens/addtaskFied.dart';
+import 'package:task_management/screens/all_task.dart';
 import 'package:task_management/utils/add_task_error_warning.dart';
 import 'package:task_management/widgets/buttonWidgets.dart';
 import 'package:get/get.dart';
@@ -79,7 +81,16 @@ class AddTask extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: (() {
-                      _dataValidation();
+                      if (_dataValidation()) {
+                        Get.find<DataController>().postData(
+                          _nameController.text.trim(),
+                          _detailController.text.trim(),
+                        );
+                        Get.to(
+                          () => const AllTask(),
+                          transition: Transition.circularReveal,
+                        );
+                      }
                     }),
                     child: Buttonwidget(
                       text: "Add",

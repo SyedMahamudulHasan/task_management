@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "981575698937",
+    "project_id": "omedia-task-manager",
+    "storage_bucket": "omedia-task-manager.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:981575698937:android:d12b04d2a1098325d75528",
+        "android_client_info": {
+          "package_name": "com.example.task_management"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "981575698937-ed6jth1llga9jrt5e7phhl5onkevns12.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDDZdCA_pmYnt5s8TGeeWfGSN2oQesnnIs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "981575698937-ed6jth1llga9jrt5e7phhl5onkevns12.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
