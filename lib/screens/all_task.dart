@@ -16,7 +16,7 @@ class AllTask extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    _loadData();
+    _loadData;
 
     dynamic myData = Get.find<DataController>().myData;
 
