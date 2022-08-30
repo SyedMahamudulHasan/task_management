@@ -37,7 +37,7 @@ class DataController extends GetxController {
 
     if (response.statusCode == 200) {
       _myData = response.body;
-      print('we got the data : ${_myData}');
+      print('we got the single data : ${_myData}');
       update();
     } else {
       print('We didnot get any data');
